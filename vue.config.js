@@ -3,4 +3,6 @@ module.exports = defineConfig({
   transpileDependencies: true
 })
 
-publicPath: "https://sovidi.github.io/portfilio/"
+module.exports = {
+  publicPath: "https://sovidi.github.io/portfilio/"
+}

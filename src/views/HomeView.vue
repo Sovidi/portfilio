@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div id="fullpage">
+    <full-page ref="fullpage" :options="options" id="fullpage" :skip-init="true">
 
       <section class="section section1">
         <div class="sec1">
@@ -15,10 +15,9 @@
           <div class="textbox">
             <figure class="pointlogo"><img src="../assets/textpoint.png" /></figure>
             <span class="firsttext">
-              <b>데이터 통신,</b>
-              사용자 경험 <b>최적화,</b>
-              <b>보안, 백엔드 브릿지</b>
-              서비스,
+              <b>데이터 통신,</b><br>
+              사용자 경험 <b>최적화,</b><br>
+              <b>보안, 백엔드 브릿지</b><br>서비스,
             </span>
             <span class="secondtext">
               그리고 각종 프레임워크 심화와
@@ -31,7 +30,7 @@
       </section>
 
       <section class="section section2">
-        <div class="sec1">
+        <div class="sec1" @click="idErase">
           <div class="textbox">
             <figure>
               <figcaption>ABOUT</figcaption><img src="../assets/about.png" />
@@ -41,37 +40,48 @@
           </div>
         </div>
         <div class="sec2">
-
-          <div class="skillsbox box1">
+          <span class="scrolltext">JAVASCRIPT CSS REACT SCSS HTML JQUERY REACT TYPESCRIPT NEXT.JS VUE.JS MYSQL NPM MONGODB NOSQL NODE.JS</span>
+          <div class="skillIntroduce">
+            <div class="skillsbox box1">
             <p>front-End</p>
             <div class="icons">
               <figure v-for="(item, index) in skillbox1" :key="index" :class="{ active: item.id === tagId }"
-                @click="idEdit(item.id)">
-                <div :style="{ 'background-image': `url(${item.src})` }"></div>
-                <p>{{ item.text }}</p>
+                @click="(e)=>{idEdit(e, item.id)}">
+                <div class="boxes" :style="{ 'background-image': `url(${item.src})` }"></div>
+                <div class="popup popclose">
+                  <div :style="{ 'background-image': `url(${item.src})` }" class="popclose"></div>
+                  <p class="popclose">{{ item.text }}</p>
+                </div>
               </figure>
             </div>
-          </div>
-
-          <div class="skillsbox box2">
-            <p>back-End</p>
-            <div class="icons">
-              <figure v-for="(item, index) in skillbox2" :key="index" :class="{ active: item.id === tagId }"
-                @click="idEdit(item.id)">
-                <div :style="{ 'background-image': `url(${item.src})` }"></div>
-                <p>{{ item.text }}</p>
-              </figure>
             </div>
-          </div>
 
-          <div class="skillsbox box3">
-            <p>etc</p>
-            <div class="icons">
-              <figure v-for="(item, index) in skillbox3" :key="index" :class="{ active: item.id === tagId }"
-                @click="idEdit(item.id)">
-                <div :style="{ 'background-image': `url(${item.src})` }"></div>
-                <p>{{ item.text }}</p>
-              </figure>
+            <div class="skillsbox box2">
+              <p>back-End</p>
+              <div class="icons">
+                <figure v-for="(item, index) in skillbox2" :key="index" :class="{ active: item.id === tagId }"
+                @click="(e)=>{idEdit(e, item.id)}">
+                  <div class="boxes" :style="{ 'background-image': `url(${item.src})` }"></div>
+                  <div class="popup popclose">
+                    <div :style="{ 'background-image': `url(${item.src})` }" class="popclose"></div>
+                    <p class="popclose">{{ item.text }}</p>
+                  </div>
+                </figure>
+              </div>
+            </div>
+
+            <div class="skillsbox box3">
+              <p>etc</p>
+              <div class="icons">
+                <figure v-for="(item, index) in skillbox3" :key="index" :class="{ active: item.id === tagId }"
+                @click="(e)=>{idEdit(e, item.id)}">
+                  <div class="boxes" :style="{ 'background-image': `url(${item.src})` }"></div>
+                  <div class="popup popclose">
+                    <div :style="{ 'background-image': `url(${item.src})` }" class="popclose"></div>
+                    <p class="popclose">{{ item.text }}</p>
+                  </div>
+                </figure>
+              </div>
             </div>
           </div>
 
@@ -89,35 +99,60 @@
           </div>
         </div>
         <div class="sec2">
-          <div v-for="(item, index) in workbox" :key="index" class="workbox" @mouseover="srcEdit(item.src)">
+          <div v-for="(item, index) in workbox" :key="index" class="workbox" :class="{active: item.id === workMouseOn}" @mouseover="srcEdit(item.src)" @mouseenter="workMouseAdd(item.id)" @mouseleave="workMouseAdd('')">
             <div class="text">
               <strong>{{item.name}}</strong>
               <span>{{item.desc}}</span>
               <p>{{item.skills}}</p>
             </div>
-            <figure class="logo"><div></div></figure>
+            <div class="links">
+              <a :href="item.githref" class="gitlink"><div class="gitlogoicon"></div></a>
+              <a :href="item.href" class="mainlink"><div class="mainlogoicon"></div></a>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="section section4">
-        <form @submit="insertComment" class="comment">
-          <input required placeholder="이름" type="text" name="name" v-model="name"/>
-          <textarea required placeholder="text of yours" name="text" v-model="text"></textarea>
-        </form>
-        <button @click="commentGet">gettest</button>
-        <ul>
-          <li v-for="(item, index) in comment" :key="index">{{ item.text }}</li>
-        </ul>
+        <div class="sec1">
+          <div class="title">
+            <strong>CONTACT</strong>
+            <div class="contactTextBox">
+              <a v-for="(item, index) in contact" :key="index" class="contactCell" :href="item.address">
+                <figure><div :style="{ 'background-image': `url(${item.src})` }"></div></figure>
+                <span>{{ item.text }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="sec2">
+          <form @submit="(e)=>{insertComment(e)}" class="comment">
+            <strong>Comments 😎</strong>
+            <input required placeholder="이름" type="text" name="name" v-model="name" class="namewrite"/>
+            <input placeholder="e-mail" type="email" name="email" v-model="email" class="emailwrite"/>
+            <textarea required placeholder="text of yours" name="text" v-model="text" class="textwrite"></textarea>
+            <button class="writebutton">댓글 달기</button>
+          </form>
+          <ul class="commentwriting">
+            <span>댓글들</span>
+            <li v-for="(item, index) in comment" :key="index" class="commentcell">
+              <div class="info">
+                <p>{{ item.name }}</p>
+                <b>{{ item.time }}</b>
+              </div>
+              <p>{{ item.text }}</p>
+            </li>
+          </ul>
+        </div>
       </section>
-    </div>
+      
+    </full-page>
   </main>
 </template>
 
 
 <script>
 import "../css/Home.scss"
-import fullpage from 'fullpage.js';
 import { mapState, mapMutations } from 'vuex';
 import axios from "axios";
 
@@ -125,6 +160,12 @@ export default {
   name: 'HomeView',
   data() {
     return {
+      options: {
+        afterLoad: this.afterLoad,
+        afterResponsive: this.afterResponsive,
+        anchors: ['page1', 'page2', 'page3', 'page4'],
+        responsiveWidth: 780,
+      },
       skillbox1: [
         { id: 1, src: "./img/js.png", text: "프론트앤드개발을 위한 기본적인 스크립트 구조를 알고있어요.", active: false },
         { id: 2, src: "./img/css.png", text: "프론트앤드개발을 위한 기본적인 스크립트 구조를 알고있어요.", active: false },
@@ -157,54 +198,120 @@ export default {
         { id: 25, src: "./img/notion.png", text: "프론트앤드개발을 위한 기본적인 스크립트 구조를 알고있어요.", active: false }
       ],
       workbox: [
-        {id: 1, name: "Wonder place", desc: "어쩌구 저쩌구", src: "./img/wonderplace.png", skills: "#react, #css, #html" },
-        {id: 2, name: "Everland", desc: "어쩌구 저쩌구", src: "./img/everland.png", skills: "#react, #css, #html" },
-        {id: 3, name: "Scary House", desc: "어쩌구 저쩌구", src: "./img/scaryhouse.png", skills: "#react, #css, #html" },
-        {id: 4, name: "Movie Finder", desc: "어쩌구 저쩌구", src: "./img/moviefinder.png", skills: "#react, #css, #html" },
-        {id: 5, name: "toGrocery", desc: "어쩌구 저쩌구", src: "./img/togrocery.png", skills: "#react, #css, #html" },
-        {id: 6, name: "petSalon", desc: "어쩌구 저쩌구", src: "./img/js.png", skills: "#react, #css, #html" }
+        {id: 1, name: "Wonder place", desc: "어쩌구 저쩌구", src: "./img/wonderplace.png", skills: "#react, #css, #html", href: "https://sovidi.github.io/wonderplace_clone/", githref:"https://github.com/Sovidi/wonderplace_clone" },
+        {id: 2, name: "Everland", desc: "어쩌구 저쩌구", src: "./img/everland.png", skills: "#react, #css, #html", href: "https://sovidi.github.io/everland/", githref:"https://github.com/Sovidi/everland" },
+        {id: 3, name: "Scary House", desc: "어쩌구 저쩌구", src: "./img/scaryhouse.png", skills: "#react, #css, #html", href: "https://sovidi.github.io/scary/", githref:"https://github.com/Sovidi/scary" },
+        {id: 4, name: "Movie Finder", desc: "어쩌구 저쩌구", src: "./img/moviefinder.png", skills: "#react, #css, #html", href: "https://sovidi.github.io/movies/", githref:"https://github.com/Sovidi/movies" },
+        {id: 5, name: "toGrocery", desc: "어쩌구 저쩌구", src: "./img/togrocery.png", skills: "#react, #css, #html", href: "https://togrocery.vercel.app/", githref:"https://github.com/Sovidi/togrocery" },
+        {id: 6, name: "petSalon", desc: "어쩌구 저쩌구", src: "./img/petsalon.png", skills: "#react, #css, #html", href: "https://www.naver.com/", githref:"https://www.daum.net/" }
+      ],
+      contact: [
+        {id: 1, text:"https://velog.io/@qwert4572", address: "https://velog.io/@qwert4572", src: "./img/velog.png"},
+        {id: 2, text:"", address: "", src: "./img/velog.png"},
+        {id: 3, text:"", address: "", src: "./img/velog.png"},
+        {id: 4, text:"", address: "", src: "./img/velog.png"},
+        {id: 5, text:"Instagram", address: "https://www.instagram.com/chaemmni/", src: "./img/velog.png"}
       ],
 
       comment: [],
       instance : axios.create({baseURL:"http://localhost:3050"}),
       name: "",
+      email: "",
       text: ""
-
     }
   },
-  mounted() {
-    new fullpage('#fullpage', {
-      // fullPage.js 옵션 설정
-    });
-    this.commentGet();
-  },
   computed: {
-    ...mapState(["tagId", "workSrc"])
+    ...mapState(["tagId", "workSrc", "page3", "workMouseOn"])
   },
   methods: {
-    ...mapMutations(["idChange", "srcChange"]),
-    idEdit(str) {
-      this.idChange(str)
+    ...mapMutations(["idChange", "srcChange", "page3income", "workMouseChange"]),
+
+    afterLoad(origin, destination, direction) {
+      console.log(origin, destination, direction)
+      if(destination.index === 2) {
+        this.pagingEdit(true);
+        console.log(this.page3)
+      } else {
+        this.pagingEdit(false);
+        console.log(this.page3)
+      }
     },
+
+    afterResponsive: function (isResponsive) {
+      if (isResponsive) {
+        this.options.autoScrolling == false; // 768px 이상에서 풀페이지 자동 스크롤 비활성화
+      } else {
+        this.options.autoScrolling == true; // 768px 이상에서 풀페이지 자동 스크롤 비활성화
+      }
+    },
+
+    idEdit(e, str) {
+      e.target.classList.contains("popclose") ? this.idErase() : this.idChange(str);
+      console.log(e.target.classList.contains("popclose"))
+    },
+
+    idErase(){
+      this.idChange("");
+    },
+
     srcEdit(src) {
       this.srcChange(src)
     },
+
     commentGet(){
       this.instance.get(`/api`)
       .then(res=>{
-        this.comment = res.data;
+        let d = res.data
+        this.comment = d.sort((b,a)=>{
+          var nameA = a._id; 
+          var nameB = b._id; 
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+          return 0;
+        });
         console.log(this.comment)
       })
     },
+
+    pagingEdit(boolean){
+      this.page3income(boolean);
+    },
+
     insertComment(e){
       e.preventDefault();
       let formData = new FormData(e.target);
+      let today = new Date();
+      formData.append("time", `${String(today.getFullYear())}.${String(today.getMonth()+1).padStart(2, "0")}.${String(today.getDate()).padStart(2, "0")}`)
       let objData = Object.fromEntries(formData);
+      console.log(objData)
+
       this.instance.post(`/api/insert`, objData)
-      .then(res=>{
-        this.comment = res.data;
-      })
+      // .then(res=>{
+      //   this.comment = res.data;
+      // })
+      this.name = "";
+      this.email = "";
+      this.text = "";
+      this.commentGet();
+    },
+
+    componentsReady() {
+      this.$refs.fullpage.init()
+    },
+
+    workMouseAdd(boolean) {
+      this.workMouseChange(boolean)
     }
+
   },
+
+  mounted() {
+    this.commentGet();
+    this.componentsReady();
+  }
 }
 </script>
