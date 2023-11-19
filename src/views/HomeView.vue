@@ -215,7 +215,8 @@ export default {
 
       comment: [],
       // instance : axios.create({baseURL:"https://port-0-portfolio2-6w1j2alm48bfok.sel5.cloudtype.app"}),
-      instance : axios.create({baseURL:"https://port-0-portfolio2-6w1j2alm48bfok.sel5.cloudtype.app"}),
+      instance : axios.create({baseURL:process.env.E_HOST}),
+      // instance : axios.create({baseURL:"http://localhost:3050/"}),
       name: "",
       email: "",
       text: ""
