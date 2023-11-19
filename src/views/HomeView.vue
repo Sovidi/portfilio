@@ -207,13 +207,15 @@ export default {
       ],
       contact: [
         {id: 1, text:"010-4338-4358", address: "#page4", src: "./img/phone.png"},
-        {id: 2, text:"lim132445@gmail.com", address: "#page4", src: "./img/mail.png"},
+        {id: 2, text:"lim132445@gmail.com", address: "lim132445@gmail.com", src: "./img/mail.png"},
+        {id: 3, text:"Github", address: "https://github.com/Sovidi", src: "./img/github.png"},
         {id: 4, text:"https://velog.io/@qwert4572", address: "https://velog.io/@qwert4572", src: "./img/velog.png"},
         {id: 5, text:"Instagram", address: "https://www.instagram.com/chaemmni/", src: "./img/instagram.png"}
       ],
 
       comment: [],
-      instance : axios.create({baseURL:"https://port-0-portfolio2-6w1j2alm48bfok.sel5.cloudtype.app"}),
+      // instance : axios.create({baseURL:"https://port-0-portfolio2-6w1j2alm48bfok.sel5.cloudtype.app"}),
+      instance : axios.create({baseURL:process.env.S_HOST}),
       name: "",
       email: "",
       text: ""
@@ -257,8 +259,8 @@ export default {
       this.srcChange(src)
     },
 
-    commentGet(){
-      this.instance.get(`/api`)
+    async commentGet(){
+      await this.instance.get(`/api`)
       .then(res=>{
         let d = res.data
         this.comment = d.sort((b,a)=>{
@@ -280,7 +282,7 @@ export default {
       this.page3income(boolean);
     },
 
-    insertComment(e){
+    async insertComment(e){
       e.preventDefault();
       let formData = new FormData(e.target);
       let today = new Date();
@@ -288,14 +290,14 @@ export default {
       let objData = Object.fromEntries(formData);
       console.log(objData)
 
-      this.instance.post(`/api/insert`, objData)
+      await this.instance.post(`/api/insert`, objData)
       // .then(res=>{
       //   this.comment = res.data;
       // })
+      await this.commentGet();
       this.name = "";
       this.email = "";
       this.text = "";
-      this.commentGet();
     },
 
     componentsReady() {
