@@ -346,7 +346,7 @@ export default {
 
     componentsReady() {
       this.$refs.fullpage.init()
-      console.log("sdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf")
+      console.log("fuck")
     },
 
     workMouseAdd(boolean) {
