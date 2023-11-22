@@ -346,7 +346,6 @@ export default {
 
     componentsReady() {
       this.$refs.fullpage.init()
-      console.log("fuck")
     },
 
     workMouseAdd(boolean) {
