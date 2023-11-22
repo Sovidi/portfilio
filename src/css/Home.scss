@@ -21,6 +21,7 @@
 			align-items: center;
 			width: 60%;
 			height: 100vh;
+			overflow-x: hidden;
 
 			>.textbox {
 				margin: 0 auto;
@@ -32,6 +33,7 @@
 
 				>span {
 					font-size: 2rem;
+					margin-bottom: 20px;
 				}
 
 				>strong {
@@ -55,16 +57,16 @@
 				color: #0433bf;
 				position: absolute;
 				font-size: 2rem;
-				bottom: 10%;
-				left: 59%;
-			  width: 0%;
+				bottom: 110%;
+				left: 9%;
+				width: 100%;
 				transform: rotate(-90deg);
 			}
 
 			>.finderlogo {
 				transform: rotate(-20deg);
 				width: 200px;
-			  position: absolute;
+				position: absolute;
 				top: 10%;
 				right: 5%;
 				>img {
@@ -116,18 +118,18 @@
 	  }
 
 	  >.sec2 {
+		>.clickIcon{
+			opacity: 1;
+			transform: translateX(0%);
+		}
 			>.skillIntroduce{
 				>.skillsbox {
 					opacity: 1;
 					transform: translateX(0%);
-	
 					&.box1 {}
-	
 					&.box2 {}
-	
 					&.box3 {}
 				}
-	
 			}
 	  }
   }
@@ -215,6 +217,24 @@
 			  }
 			  
 		  }
+		  >.clickIcon{
+			position: absolute;
+			top: 5%;
+			right: 10%;
+			opacity: 0;
+			transform: translateX(100%);
+			transition: 1s;
+			width: 50px;
+			height: 50px;
+			>div{
+				width: 100%;
+				height: 100%;
+				background-image: url(../assets/click.png);
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center;
+			}
+		  }
 			>.skillIntroduce{
 				display: flex;
 				flex-direction: column;
@@ -262,6 +282,7 @@
 							flex-direction: column;
 							align-items: center;
 							justify-content: center;
+							cursor: pointer;
 		
 							>.boxes {
 								width: 100%;
@@ -277,14 +298,15 @@
 								transform: translate(1000px);
 								opacity: 0;
 								transition: 0.5s;
-								width: 300px;
-								height: 150px;
+								min-width: 300px;
+								min-height: 150px;
 								background-color: white;
 								display: flex;
 								flex-direction: column;
 								align-items: center;
 								justify-content: center;
 								border-radius: 30px;
+								padding: 5%;
 		
 								>div {
 									width: 70px;
@@ -295,8 +317,9 @@
 								}
 		
 								>p {
+									margin-top: 15px;
 									text-align: center;
-									font-size: 1.3rem;
+									font-size: 1rem;
 								}
 							}
 		
@@ -310,8 +333,8 @@
 					}
 				}		
 			}
-  }
-}
+		}
+	}
 }
 
 .section3 {
@@ -376,9 +399,9 @@
 		  width: 70%;
 		  border-top: 1px solid white;
 		  border-bottom: 1px solid white;
-		  padding: 40px 30px 40px 30px;
+		  padding: 3% 1.2% 3% 1.2%;
 		  display: flex;
-		  justify-content: space-around;
+		  justify-content: space-between;
 		  align-items: center;
 		  transition: 0.5s;
 
@@ -466,7 +489,7 @@ background-color: #0433BF;
 				  display: flex;
 				  justify-content: start;
 				  align-items: center;
-				  margin: 10px 0 10px 0;
+				  margin: 20px 0 20px 0;
 				  >figure{
 					  width: 30px;
 					  height: 30px;
@@ -504,6 +527,9 @@ background-color: #0433BF;
 		  }
 
 		  >.namewrite {
+			&.modname{
+				display: none;
+			}
 			  width: 90%;
 			  height: 10%;
 			  border-radius: 10px;
@@ -521,7 +547,7 @@ background-color: #0433BF;
 			  width: 90%;
 			  height: 30%;
 			  border-radius: 10px;
-			  padding: 0 10px 0 10px;
+			  padding: 10px 10px 10px 10px;
 		  }
 
 		  >.writebutton {
@@ -533,16 +559,16 @@ background-color: #0433BF;
 	  }
 
 	  >.commentwriting {
-		  border-top: 1px solid white;
-		  padding: 0 5% 0 5%;
-			  position: relative;
-			  >span{
-				  position: absolute;
-				  top: 0%;
-				  left: 0%;
-				  color: white;
-				  writing-mode: vertical-rl;
-			  }
+		border-top: 1px solid white;
+		padding: 0 5% 0 5%;
+		position: relative;
+		>span{
+			position: absolute;
+			top: 0%;
+			left: 0%;
+			color: white;
+			writing-mode: vertical-rl;
+		}
 
 		  >.commentcell {
 			  width: 90%;
@@ -565,10 +591,18 @@ background-color: #0433BF;
 					  font-size: 0.5rem;
 				  }
 			  }
-
-			  >p {
-				  font-size: 1.3rem;
-				  word-wrap: break-word;
+			  >.texts {
+				display: flex;
+				justify-content: space-between;
+				>p {
+					font-size: 1.3rem;
+					word-wrap: break-word;
+				}
+				>.modbutton {
+					border-radius: 7px;
+					padding: 3px 10px 3px 10px;
+					font-size: 0.8rem;
+				}
 			  }
 		  }
 	  }
@@ -614,6 +648,10 @@ background-color: #0433BF;
 				width: 100%;
 	
 				>.birth {
+					width: 100px;
+					bottom: 50%;
+					left: 20%;
+					transform: rotate(0);
 				}
 	
 				>.finderlogo {
@@ -652,13 +690,17 @@ background-color: #0433BF;
 				}
 		
 				>.sec2 {
-					>.skillsbox {
+					>.clickIcon{
+					}
+					>.skillIntroduce{
+						>.skillsbox {
 		
-						&.box1 {}
-		
-						&.box2 {}
-		
-						&.box3 {}
+							&.box1 {}
+			
+							&.box2 {}
+			
+							&.box3 {}
+						}
 					}
 				}
 			}
@@ -709,7 +751,10 @@ background-color: #0433BF;
 					// 	}
 						
 					// }
-
+					>.clickIcon{
+						top: 55%;
+						>div{}
+					}
 					>.skillIntroduce{
 						>.skillsbox {
 							margin: 2% 0 2% 0;
@@ -738,8 +783,8 @@ background-color: #0433BF;
 									}
 				
 									>.popup {
-										width: 200px;
-										height: 100px;
+										min-width: 200px;
+										min-height: 100px;
 				
 										>div {
 											width: 50px;
@@ -747,7 +792,7 @@ background-color: #0433BF;
 										}
 				
 										>p {
-											font-size: 1.0rem;
+											font-size: 1.2rem;
 										}
 									}
 				
@@ -802,7 +847,6 @@ background-color: #0433BF;
 				>.workbox {
 					&.active{
 					}
-					padding: 20px 10px 20px 10px;
 		
 					>.text {
 						>strong{
@@ -895,22 +939,80 @@ background-color: #0433BF;
 							}
 						}
 		
-						>p {
+						>.texts {
+							>p{}
+							>.modbutton{}
 						}
 					}
 				}
 			}
 		}
-		}
-		
-
+	}
 }
 
 
 @media (max-width: 780px){
 	html{
-		font-size: 7px;
+		font-size: 8px;
 	}
+
+	.section1 {
+		&.active {
+			>.fp-overflow {
+				>.sec1 {
+					>.textbox {
+					}
+				}
+			}
+		}
+	
+		// background: linear-gradient(to right, #ffffff 0%, #ffffff 60%, #0433BF 60%, #0433BF 100%);  
+		>.fp-overflow {
+	
+			>.sec1 {
+	
+				>.textbox {	
+
+					>span {
+					}
+	
+					>strong {
+					}
+				}
+			}
+	
+			>.sec2 {
+	
+				>.birth {
+				}
+	
+				>.finderlogo {
+					width: 160px;
+					right: 10%;
+					>img {
+					}
+				}
+	
+				>.textbox {
+	
+					>.pointlogo {}
+	
+					>span {
+	
+						&.firsttext {
+	
+							>b {
+							}
+						}
+	
+						&.secondtext {
+						}
+					}
+				}
+			}
+		}
+	}	
+
 }
 
 

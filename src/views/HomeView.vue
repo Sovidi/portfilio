@@ -41,6 +41,7 @@
         </div>
         <div class="sec2">
           <span class="scrolltext">JAVASCRIPT CSS REACT SCSS HTML JQUERY REACT TYPESCRIPT NEXT.JS VUE.JS MYSQL NPM MONGODB NOSQL NODE.JS</span>
+          <span class="clickIcon fa-bounce"><div></div></span>
           <div class="skillIntroduce">
             <div class="skillsbox box1">
             <p>front-End</p>
@@ -106,8 +107,8 @@
               <p>{{item.skills}}</p>
             </div>
             <div class="links">
-              <a :href="item.githref" class="gitlink"><div class="gitlogoicon"></div></a>
-              <a :href="item.href" class="mainlink"><div class="mainlogoicon"></div></a>
+              <a :href="item.githref" class="gitlink" target="_blank"><div class="gitlogoicon"></div></a>
+              <a :href="item.href" class="mainlink" target="_blank"><div class="mainlogoicon"></div></a>
             </div>
           </div>
         </div>
@@ -125,24 +126,39 @@
             </div>
           </div>
         </div>
-        <div class="sec2">
+        <div v-if="mode=='list'" class="sec2">
           <form @submit="(e)=>{insertComment(e)}" class="comment">
             <strong>Comments 😎</strong>
             <input required placeholder="이름" type="text" name="name" v-model="name" class="namewrite"/>
-            <input placeholder="e-mail" type="email" name="email" v-model="email" class="emailwrite"/>
+            <input required placeholder="e-mail" type="email" name="email" v-model="email" class="emailwrite"/>
             <textarea required placeholder="text of yours" name="text" v-model="text" class="textwrite"></textarea>
             <button class="writebutton">댓글 달기</button>
+            <!-- <button type="button" @click="modechange('modify')" class="writebutton">댓글 수정</button> -->
           </form>
           <ul class="commentwriting">
             <span>댓글들</span>
             <li v-for="(item, index) in comment" :key="index" class="commentcell">
               <div class="info">
                 <p>{{ item.name }}</p>
+                <b>{{ item.day }}</b>&nbsp;
                 <b>{{ item.time }}</b>
               </div>
-              <p>{{ item.text }}</p>
+              <div class="texts">
+                <p>{{ item.text }}</p>
+                <button @click="modechange('modify'), commentIdEdit(item.name), this.name=commentId" class="modbutton">수정하기</button>
+              </div>
             </li>
           </ul>
+        </div>
+        <div v-else-if="mode=='modify'" class="sec2">
+          <form  @submit="(e)=>{modifyComment(e)}" class="comment">
+            <strong>댓글 수정하기 😎</strong>
+            <input required placeholder="작성한 댓글의 이름을 적어주세요" type="text" name="name" v-model="name" class="namewrite modname"/>
+            <input required placeholder="작성한 댓글의 e-mail을 적어주세요" type="email" name="email" v-model="email" class="emailwrite"/>
+            <textarea required placeholder="수정할 댓글 내용을 적어주세요" name="text" v-model="text" class="textwrite"></textarea>
+            <button class="writebutton">수정하기</button>
+            <button type="button" class="writebutton" @click="modechange('list'), this.name=''">취소하기</button>
+          </form>
         </div>
       </section>
       
@@ -195,15 +211,18 @@ export default {
         { id: 22, src: "./img/zeplin.png", text: "포토샵과 연결하여 기초적인 사이트 디자인을 구상하는데 사용할 수 있어요.", active: false },
         { id: 23, src: "./img/vercel.png", text: "next.js 프로젝트 빌드와 업로드를 위해 사용중입니다.", active: false },
         { id: 24, src: "./img/netlify.png", text: "vue 프로젝트 빌드와 업로드를 위해 사용중입니다.", active: false },
-        { id: 25, src: "./img/notion.png", text: "각종 중요한 코드 메모와 팀 프로젝트 상황공유를 위해 사용하고 있으며 마크다운 명령어를 주로 다룰 수 있어요.", active: false }
+        { id: 25, src: "./img/notion.png", text: "각종 중요한 코드 메모와 팀 프로젝트 상황공유를 위해 사용하고 있으며 마크다운 명령어를 주로 다룰 수 있어요.", active: false },
+        { id: 26, src: "./img/finale.png", text: "각종 음악악보 사보 및 작곡, 가상악기로 음원제작을 할 수 있어요.", active: false },
+        { id: 27, src: "./img/german.png", text: "독일에서의 유학생활중 학업과 현업으로 독일어 회화가 가능합니다.", active: false }
       ],
       workbox: [
-        {id: 1, name: "Wonder place", desc: "어쩌구 저쩌구", src: "./img/wonderplace.png", skills: "#react, #css, #html", href: "https://sovidi.github.io/wonderplace_clone/", githref:"https://github.com/Sovidi/wonderplace_clone" },
-        {id: 2, name: "Everland", desc: "어쩌구 저쩌구", src: "./img/everland.png", skills: "#react, #css, #html", href: "https://sovidi.github.io/everland/", githref:"https://github.com/Sovidi/everland" },
-        {id: 3, name: "Scary House", desc: "어쩌구 저쩌구", src: "./img/scaryhouse.png", skills: "#react, #css, #html", href: "https://sovidi.github.io/scary/", githref:"https://github.com/Sovidi/scary" },
-        {id: 4, name: "Movie Finder", desc: "어쩌구 저쩌구", src: "./img/moviefinder.png", skills: "#react, #css, #html", href: "https://sovidi.github.io/movies/", githref:"https://github.com/Sovidi/movies" },
-        {id: 5, name: "toGrocery", desc: "어쩌구 저쩌구", src: "./img/togrocery.png", skills: "#react, #css, #html", href: "https://togrocery.vercel.app/", githref:"https://github.com/Sovidi/togrocery" },
-        {id: 6, name: "petSalon", desc: "어쩌구 저쩌구", src: "./img/petsalon.png", skills: "#react, #css, #html", href: "https://www.naver.com/", githref:"https://www.daum.net/" }
+        {id: 0, name: "Portfolio", desc: "보고계신 포트폴리오 페이지 입니다.", src: "./img/portfolio.gif", skills: "#Vue.js, #scss, #html, #MongoDB, #Express", href: "#", githref:"https://github.com/Sovidi/portfolio2" },
+        {id: 1, name: "Wonder place", desc: "원더플레이스 브랜드관 소개페이지 클론코딩", src: "./img/wonderplace.png", skills: "#javascript, #scss, #html, #jQuery", href: "https://sovidi.github.io/wonderplace_clone/", githref:"https://github.com/Sovidi/wonderplace_clone" },
+        {id: 2, name: "Everland", desc: "에버랜드 홈페이지 리뉴얼", src: "./img/everland.png", skills: "#javascript, #scss, #html, #jQuery", href: "https://sovidi.github.io/everland/", githref:"https://github.com/Sovidi/everland" },
+        {id: 3, name: "Scary House", desc: "귀신의 집, 공포 추리 미니 게임", src: "./img/scaryhouse.png", skills: "#react, #scss, #html, #Express", href: "https://sovidi.github.io/scary/", githref:"https://github.com/Sovidi/scary" },
+        {id: 4, name: "Movie Finder", desc: "MovieDB API 를 활용한 간단 무비 파인더", src: "./img/moviefinder.png", skills: "#react, #scss, #html", href: "https://sovidi.github.io/movies/", githref:"https://github.com/Sovidi/movies" },
+        {id: 5, name: "toGrocery", desc: "시장 농산물 물가현황 간편확인 및 위치기반 매칭 어플", src: "./img/togrocery.png", skills: "#next.js, #scss, #html", href: "https://togrocery.vercel.app/", githref:"https://github.com/Sovidi/togrocery" },
+        {id: 6, name: "petSalon", desc: "미용사 찾기 위치기반 서비스 어플", src: "./img/petsalon.png", skills: "#react, #css, #html", href: "#", githref:"#" }
       ],
       contact: [
         {id: 1, text:"010-4338-4358", address: "#page4", src: "./img/phone.png"},
@@ -214,8 +233,8 @@ export default {
       ],
 
       comment: [],
-      // instance : axios.create({baseURL:"https://port-0-portfolio2-6w1j2alm48bfok.sel5.cloudtype.app"}),
-      instance : axios.create({baseURL:process.env.E_HOST}),
+      instance : axios.create({baseURL:"https://port-0-portfolio2-6w1j2alm48bfok.sel5.cloudtype.app"}),
+      // instance : axios.create({baseURL:process.env.E_HOST}),
       // instance : axios.create({baseURL:"http://localhost:3050/"}),
       name: "",
       email: "",
@@ -223,19 +242,19 @@ export default {
     }
   },
   computed: {
-    ...mapState(["tagId", "workSrc", "page3", "workMouseOn"])
+    ...mapState(["tagId", "workSrc", "page3", "workMouseOn", "mode", "commentId"])
   },
   methods: {
-    ...mapMutations(["idChange", "srcChange", "page3income", "workMouseChange"]),
+    ...mapMutations(["idChange", "srcChange", "page3income", "workMouseChange", "modeEdit", "idSave"]),
 
     afterLoad(origin, destination, direction) {
       console.log(origin, destination, direction)
       if(destination.index === 2) {
         this.pagingEdit(true);
-        console.log(this.page3)
+        console.log(this.page3);
       } else {
         this.pagingEdit(false);
-        console.log(this.page3)
+        console.log(this.page3);
       }
     },
 
@@ -260,11 +279,15 @@ export default {
       this.srcChange(src)
     },
 
+    commentIdEdit(str){
+      this.idSave(str)
+    },
+
     async commentGet(){
       await this.instance.get(`/api`)
       .then(res=>{
         let d = res.data
-        this.comment = d.sort((b,a)=>{
+        this.comment = d.sort((b, a)=>{
           var nameA = a._id; 
           var nameB = b._id; 
           if (nameA < nameB) {
@@ -287,7 +310,8 @@ export default {
       e.preventDefault();
       let formData = new FormData(e.target);
       let today = new Date();
-      formData.append("time", `${String(today.getFullYear())}.${String(today.getMonth()+1).padStart(2, "0")}.${String(today.getDate()).padStart(2, "0")}`)
+      formData.append("day", `${String(today.getFullYear())}.${String(today.getMonth()+1).padStart(2, "0")}.${String(today.getDate()).padStart(2, "0")}`)
+      formData.append("time", `${String(today.getHours()).padStart(2, "0")}:${String(today.getMinutes()).padStart(2, "0")}`)
       let objData = Object.fromEntries(formData);
       console.log(objData)
 
@@ -301,12 +325,35 @@ export default {
       this.text = "";
     },
 
+    async modifyComment(e){
+      e.preventDefault();
+      let formData = new FormData(e.target);
+      let today = new Date();
+      formData.append("time", `${String(today.getFullYear())}.${String(today.getMonth()+1).padStart(2, "0")}.${String(today.getDate()).padStart(2, "0")}`)
+      let objData = Object.fromEntries(formData);
+      console.log(objData)
+
+      await this.instance.put(`/api/put`, objData)
+      // .then(res=>{
+      //   this.comment = res.data;
+      // })
+      await this.commentGet();
+      this.name = "";
+      this.email = "";
+      this.text = "";
+      this.modechange("list");
+    },
+
     componentsReady() {
       this.$refs.fullpage.init()
     },
 
     workMouseAdd(boolean) {
       this.workMouseChange(boolean)
+    },
+
+    modechange(str) {
+      this.modeEdit(str)
     }
 
   },

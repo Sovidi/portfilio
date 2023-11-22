@@ -5,7 +5,9 @@ export default createStore({
     tagId : "",
     workSrc : "",
     page3 : false,
-    workMouseOn: ""
+    workMouseOn: "",
+    mode: "list",
+    commentId: ""
   },
   getters: {
   },
@@ -21,6 +23,12 @@ export default createStore({
     },
     workMouseChange(state, str){
       state.workMouseOn = str;
+    },
+    modeEdit(state, str) {
+      state.mode = str;
+    },
+    idSave(state, str) {
+      state.commentId = str;
     }
   },
   actions: {
