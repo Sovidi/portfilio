@@ -551,6 +551,12 @@ background-color: #0433BF;
 		  }
 
 		  >.writebutton {
+			&.delete{
+				background-color: red;
+			}
+			&.cancel{
+				background-color: orange;
+			}
 			  padding: 10px;
 			  border-radius: 10px;
 			  font-size: 1rem;

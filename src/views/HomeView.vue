@@ -157,7 +157,8 @@
             <input required placeholder="작성한 댓글의 e-mail을 적어주세요" type="email" name="email" v-model="email" class="emailwrite"/>
             <textarea required placeholder="수정할 댓글 내용을 적어주세요" name="text" v-model="text" class="textwrite"></textarea>
             <button class="writebutton">수정하기</button>
-            <button type="button" class="writebutton" @click="modechange('list'), this.name=''">취소하기</button>
+            <button type="button" class="writebutton delete" @click="deleteComment">삭제하기</button>
+            <button type="button" class="writebutton cancel" @click="modechange('list'), this.name=''">취소하기</button>
           </form>
         </div>
       </section>
@@ -343,6 +344,21 @@ export default {
       this.text = "";
       this.modechange("list");
     },
+
+    async deleteComment(e){
+      e.preventDefault();
+
+      await this.instance.delete(`/api/delete?name=${this.commentId}&email=${this.email}`)
+      // .then(res=>{
+      //   this.comment = res.data;
+      // })
+      await this.commentGet();
+      this.name = "";
+      this.email = "";
+      this.text = "";
+      this.modechange("list");
+    },
+
 
     componentsReady() {
       this.$refs.fullpage.init()
