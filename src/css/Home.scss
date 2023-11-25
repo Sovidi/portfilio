@@ -138,7 +138,7 @@
 // background: linear-gradient(to right, #ffffff 0%, #ffffff 60%, #0433BF 60%, #0433BF 100%);  
 >.fp-overflow {
   display: flex;
-  overflow-x: hidden;
+  overflow: hidden;
 
   >.sec1 {
 	  display: flex;
@@ -338,7 +338,6 @@
 }
 
 .section3 {
-
 >.fp-overflow {
   display: flex;
   background-color: black;
@@ -372,7 +371,6 @@
 			  // }
 
 			  >div {
-				  border-radius: 30px;
 				  transition: 0.5s;
 				  width: 100%;
 				  height: 100%;
@@ -630,54 +628,39 @@ background-color: #0433BF;
 				}
 			}
 		}
-	
-		// background: linear-gradient(to right, #ffffff 0%, #ffffff 60%, #0433BF 60%, #0433BF 100%);  
 		>.fp-overflow {
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-	
 			>.sec1 {
 				width: 100%;
-	
 				>.textbox {	
-
 					>span {
 					}
-	
 					>strong {
 					}
 				}
 			}
-	
 			>.sec2 {
 				width: 100%;
-	
 				>.birth {
 					width: 100px;
 					bottom: 50%;
 					left: 20%;
 					transform: rotate(0);
 				}
-	
 				>.finderlogo {
 					top: 50%;
 					>img {
 					}
 				}
-	
 				>.textbox {
-	
 					>.pointlogo {}
-	
 					>span {
-	
 						&.firsttext {
-	
 							>b {
 							}
 						}
-	
 						&.secondtext {
 						}
 					}
@@ -687,64 +670,48 @@ background-color: #0433BF;
 	}	
 
 	.section2 {
-
 		&.active {
 			>.fp-overflow {
 				>.sec1 {
 					>.textbox {
 					}
 				}
-		
 				>.sec2 {
 					>.clickIcon{
 					}
 					>.skillIntroduce{
 						>.skillsbox {
-		
 							&.box1 {}
-			
 							&.box2 {}
-			
 							&.box3 {}
 						}
 					}
 				}
 			}
 		}
-		
-		// background: linear-gradient(to right, #ffffff 0%, #ffffff 60%, #0433BF 60%, #0433BF 100%);  
 		>.fp-overflow {
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-
-		
 			>.sec1 {
 				width: 100%;
-				height: 150vh;
-		
+				height: 40vh;
 				>.textbox {
-		
 					>figure {
-		
 						>figcaption {
 						}
-		
 						>img {
 						}
 					}
-		
 					>span {
 					}
 				}
 			}
-		
 			>.sec2 {
 				width: 100%;
-				height: 180vh;
+				height: 60vh;
 				justify-content: space-evenly;
 				// position: relative;
-		
 					>.scrolltext{
 					}
 					// @keyframes scrolling {
@@ -765,43 +732,32 @@ background-color: #0433BF;
 						>.skillsbox {
 							margin: 2% 0 2% 0;
 							width: 80%;
-				
 							&.box1 {
 							}
-				
 							&.box2 {
 							}
-				
 							&.box3 {
 							}
-				
 							>p {
 								margin-bottom: 1%;
 							}
-				
 							>.icons {
-				
 								>figure {
 									width: 50px;
 									height: 50px;
-				
 									>.boxes {
 									}
-				
 									>.popup {
 										min-width: 200px;
 										min-height: 100px;
-				
 										>div {
 											width: 50px;
 											height: 50px;
 										}
-				
 										>p {
 											font-size: 1.2rem;
 										}
 									}
-				
 									&.active {
 										>.popup {
 										}
@@ -815,31 +771,25 @@ background-color: #0433BF;
 	}
 
 	.section3 {
-
 		>.fp-overflow {
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			
 			>.sec1 {
 				width: 100%;
+				height: 40vh;
 				// padding-top: 5%;
-		
 				>.title {
-		
 					>strong {
 					}
-		
 					>figure {
 						width: 450px;
-						height: 300px;
-		
+						height: 200px;
 						// >img{
 						// 	width: 100%;
 						// 	border-radius: 30px;
 						// 	transition: 0.8s;
 						// }
-		
 						>div {
 						}
 					}
@@ -849,11 +799,11 @@ background-color: #0433BF;
 			>.sec2 {
 				// padding-bottom: 5%;
 				width: 100%;
-		
+				height: 60vh;
 				>.workbox {
 					&.active{
 					}
-		
+					padding: 1.2% 1.2% 1.2% 1.2%;
 					>.text {
 						>strong{
 						}
@@ -862,7 +812,6 @@ background-color: #0433BF;
 						>p{
 						}
 					}
-
 					>.links{
 						>.gitlink{
 							>.gitlogoicon{
@@ -873,8 +822,6 @@ background-color: #0433BF;
 							}
 						}  
 					}
-			
-
 				}
 			}
 		}
@@ -971,54 +918,78 @@ background-color: #0433BF;
 				}
 			}
 		}
-	
-		// background: linear-gradient(to right, #ffffff 0%, #ffffff 60%, #0433BF 60%, #0433BF 100%);  
 		>.fp-overflow {
-	
 			>.sec1 {
-	
 				>.textbox {	
-
 					>span {
 					}
-	
 					>strong {
 					}
 				}
 			}
-	
 			>.sec2 {
-	
 				>.birth {
 				}
-	
 				>.finderlogo {
 					width: 160px;
 					right: 10%;
 					>img {
 					}
 				}
-	
 				>.textbox {
-	
 					>.pointlogo {}
-	
 					>span {
-	
 						&.firsttext {
-	
 							>b {
 							}
 						}
-	
 						&.secondtext {
 						}
 					}
 				}
 			}
 		}
-	}	
+	}
 
+	.section3 {
+		>.fp-overflow {		
+		  >.sec1 {		
+			  >.title {		
+				  >strong {
+				  }		
+				  >figure {		
+					  >div {
+					  }
+				  }
+			  }
+		  }
+		  >.sec2 {
+			  >.workbox {
+				padding: 3% 1% 3% 1%;
+				  &.active{
+				  }
+				  >.text {
+					  >strong{
+					  }
+					  >span{
+					  }
+					  >p{
+					  }
+				  }
+				  >.links{
+					>.gitlink{
+						>.gitlogoicon{
+						}
+					}
+					>.mainlink{
+						>.mainlogoicon {
+						}
+					}  
+				}
+			}
+		}
+		}
+	}
 }
 
 
