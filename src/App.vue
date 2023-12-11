@@ -122,6 +122,9 @@ html {
 	font-size: 16px;
 	// font-family: 'Noto Sans KR', sans-serif;
 	font-family: "GmarketSansMedium";
+	button{font-family: "GmarketSansMedium";}
+	input{font-family: "GmarketSansMedium";}
+	textarea{font-family: "GmarketSansMedium";}
 
 	header {
 		position: fixed;
