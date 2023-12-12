@@ -179,7 +179,6 @@ export default {
     return {
       options: {
         afterLoad: this.afterLoad,
-        afterResponsive: this.afterResponsive,
         anchors: ['page1', 'page2', 'page3', 'page4'],
         responsiveWidth: 1000,
       },
@@ -256,14 +255,6 @@ export default {
       } else {
         this.pagingEdit(false);
         console.log(this.page3);
-      }
-    },
-
-    afterResponsive: function (isResponsive) {
-      if (isResponsive) {
-        this.options.autoScrolling == false;
-      } else {
-        this.options.autoScrolling == true;
       }
     },
 
