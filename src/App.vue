@@ -1,5 +1,5 @@
 <template>
-	<a class="headerlogo" :href="'https://portfolio3-blue.vercel.app/'" :class="{active: page3}">포트폴리오 주소가 변경되었습니다.</a>
+	<a class="headerlogo" :href="'https://portfolio3-blue.vercel.app/'" :class="{active: page3}">포트폴리오 주소가 변경되었습니다. 이곳을 클릭하세요</a>
 	<router-view />
 </template>
 
