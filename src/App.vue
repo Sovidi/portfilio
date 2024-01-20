@@ -1,5 +1,5 @@
 <template>
-	<header class="headerlogo" :class="{active: page3}">LCM</header>
+	<a class="headerlogo" :href="'https://portfolio3-blue.vercel.app/'" :class="{active: page3}">포트폴리오 주소가 변경되었습니다.</a>
 	<router-view />
 </template>
 
@@ -126,7 +126,7 @@ html {
 	input{font-family: "GmarketSansMedium";}
 	textarea{font-family: "GmarketSansMedium";}
 
-	header {
+	.headerlogo {
 		position: fixed;
 		left: 5%;
 		top: 5%;
